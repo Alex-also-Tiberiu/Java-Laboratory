@@ -1,5 +1,0 @@
-FE 345 GB #Audi A3    | km 132000 | € 18000
-EK 765 LK #VW Golf    | km 47000  | € 23000
-FS 123 AB #FIAT 500L  | km 12000  | € 21000
-DY 987 KJ #AR Stelvio | km 0      | € 49000
-FS 123 AB #FIAT 500L  | km 12000  | € 19000
