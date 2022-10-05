@@ -1,0 +1,125 @@
+                      Fondamenti di Informatica - Canale 5 - a.a.  2015-2016
+                 Simulazione del 19.01.2016 della Prova Pratica di Programmazione
+                 
+INSIEME DI ELEMENTI DI TIPO GENERICO DOTATO DI PRODOTTO CARTESIANO
+==================================================================
+
+Il tipo di dati astratto insieme, una collezione di elementi in cui ciascun elemento compare al
+massimo una sola volta, sia definito dalla seguente interfaccia
+public interface Set<T> { //--ADT Insieme di elementi di tipo generico
+   /**inserisce nell'insieme l'elemento specificato se diverso da null e non gia' presente
+      @param x l'elemento specificato
+      @throws java.lang.ClassCastException se l'elemento specificato non e' un esemplare di una
+              classe che realizza l'interfaccia java.lang.Comparable
+   */ void add(T x);
+   
+   /* Se l'array specificato e' diverso da null inserisce  nell'insieme gli elementi contenuti
+      dell'array, se non gia' presenti
+      @param a l'array specificato
+      @throws java.lang.ClassCastException se gli elementi dell'array specificato non sono esemplari
+              di una classe che realizza l'interfaccia java.lang.Comparable
+   */ void add(T[] a);   
+   
+  /** prodotto cartesiano di questo insieme con l'insieme specificato. Detti A e B i due insiemi
+      e AxB il prodotto cartesiano allora AxB = {coppie (a,b) | a appartiene a A e b appartiene a B}
+      @param s l'insieme specificato
+      @return insieme prodotto cartesiano di questo insieme con l'insieme specificato. Restituisce
+              un insieme vuoto se s vale null oppure uno dei due insiemi e' vuoto
+   */ Set cartesianProduct(Set s);
+
+   /**@param x elemento specificato
+      @return true se questo insieme contiene l'elemento specificato, false altrimenti
+   */ boolean contains(T x);
+   
+   /**@return true se questo insieme e' vuoto, false altrimenti
+   */ boolean isEmpty();
+   
+   /**@return il numero di elementi contenuti in questo insieme
+   */ int size();        
+   
+   /**@return array contenente tutti gli elementi di questo insieme disposti
+              secondo il loro ordine naturale in senso crescente.
+   */ Comparable[] toArray();  
+}
+Le coppie ordinate presenti nell'insieme prodotto cartesiano siano esemplari della seguente classe
+public class Pair implements Comparable<Pair> //--Coppia ordinata comparabile
+{  // parte privata
+   ... 
+   
+   /**inizializza la coppia ordinata con gli elementi specificati
+      @param f primo elemento specificato
+      @param s secondo elemento specificato
+   */ public Pair(Comparable f, Comparable s) {...}
+   
+   /**@return true se questa coppia e la coppia specificata sono uguali, false altrimenti. Le coppie
+              (a,b) e (c,d) sono uguali se e solo se a e c sono uguali e b e d sono uguali 
+      @param p coppia specificata
+   */ public boolean equals(Object p) {...}
+   
+   /**@return descrizione testuale della coppia nella forma "(a,b)" con a e b il primo e secondo
+              elemento della coppia, rispettivamente
+   */ public String toString() {---}
+    
+   /**@param p coppia specificata
+      @return 0 se questa coppia e la coppia specificata sono uguali, altrimenti se i primi elementi
+              sono diversi restituisce il loro confronto, se sono uguali il confronto fra i secondi
+              elementi.
+      Esempio: (1,2) precede (2,1) (primi elementi diversi: confronto fra i primi elementi).
+               (1,2) precede (1,3) (primi elementi uguali: confronto fra i secondi elementi).
+   */ public int compareTo(Pair p) {...}
+}
+Il candidato completi la classe public class Pair implements Comparable<Pair> e realizzi successiva-
+mente la classe public class S<T> implements Set<T> dotata dei seguenti costruttori:
+- public S() inizializza un insieme vuoto
+- public S(T[] a) inizializza un insieme con gli elementi dell'array specificato.
+Ai fini della valutazione si considerera' ottima la realizzazione in cui i metodi toArray e contains della classe S hanno complessita' temporale pari a O(n) e O(logn), rispettivamente.
+In sede di correzione il codice sara' provato con i comandi:
+   $rm *.class
+   $javac STester.java
+   $java  STester numbers.txt
+dove numbers.txt e' il file allegato e la classe STester.java e' la seguente:
+public class STester {
+   public static void main(String[] args) throws java.io.IOException {
+      Set<String> s = new S<String>();                                      // prova del costruttore
+     
+      java.util.Scanner in = new java.util.Scanner(new java.io.FileReader(args[0]));
+      
+      while (in.hasNext())
+         s.add(in.next());                                                   // prova del metodo add
+         
+      System.out.println("SIZE = " + s.size());                             // prova del metodo size  
+
+      System.out.print("TOARRAY = ");                                    // prova del metodo toArray
+      Object[] a = s.toArray(); 
+      for (int i = 0; i < a.length; i++)
+         System.out.print(a[i] + " ");
+      System.out.println();
+      
+      Set b = s.cartesianProduct(new S(new String[] {"A", "B", "C"}));           // prova del metodo
+      System.out.println("CARTESIAN_PRODUCT = " + b.size() + " coppie");         // cartesianProduct
+      Object[] p = b.toArray();
+      for (int i = 0; i < p.length; i++)
+         System.out.print(p[i] + " ");
+      System.out.println();             
+   }
+}
+Il file OK.txt allegato riporta il risultato a standard output quando la classe STester esegue
+acquisendo dati dal file numbers.txt.
+Di norma si valutano insufficienti gli elaborati che danno luogo a errori di compilazione.
+Nella realizzazione delle classi Pair e S non e' lecito:
+- aggiungere variabili e/o metodi non privati;
+- usare classi della Java Platform API a eccezione di quelle del package java.lang.
+Alla fine della prova il candidato lascera' nella directory di lavoro i file da lui prodotti e i
+file forniti dal docente. I file prodotti dal candidato dovranno contenere come prima riga un
+commento con nome e cognome del candidato, matricola, data e numero della postazione.
+                                  
+                                  FONDAMENTI DI INFORMATICA (Canale 5)
+
+Cognome e Nome   ____________________________________Matr.  ___________________Post.  ADT___________
+
+Consegno l'elaborato che consiste dei seguenti file:___________________________
+
+                                              Firma ________________________________________________
+Non consegno l'elaborato e mi ritiro dall'esame.
+                                               Firma _______________________________________________
+
