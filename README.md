@@ -28,7 +28,7 @@ Questo repository raccoglie tutti i programmi realizzati per imparare Java, part
 - [Lab9/](src/Lab9/): Stack e liste
 - [Lab10/](src/Lab10/): Vettori, stack, liste doppiamente collegate
 - [Lab10-UnsortedMap/](src/Lab10-UnsortedMap/), [Lab10-SortedMap/](src/Lab10-SortedMap/): Implementazioni di mappe
-- [Lab11/], [Lab12/], [Lab13/]: Approfondimenti su set, deque, iterable
+- [Lab11/](src/Lab11/), [Lab12/](src/Lab12/), [Lab13/](src/Lab13/): Approfondimenti su set, deque, iterable
 - [Set/](src/Set/): Varianti di Set (array, lista, hashtable, versioni ordinate)
 
 Per ogni cartella principale è presente (o verrà aggiunto) un README.md con dettagli sulle implementazioni e i file.
